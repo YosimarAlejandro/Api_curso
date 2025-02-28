@@ -1,10 +1,20 @@
 const mongoose = require("mongoose");
 
-const LogrodesSchema = new mongoose.Schema({
-    fecha:{
-        type:Date,
-        default:Date.now
+// Modelo de Logro desbloqueado
+const LogroUnlockedSchema = new mongoose.Schema({
+    fecha_desbloqueo: {
+        type: Date,
+        default: Date.now
+    },
+    id_usuario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+    id_logro: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Logro",
+        required: true
     }
-})
-
-const  Logrodes = mongoose.model("Logrodes",LogrodesSchema)
+});
+const LogroUnlocked = mongoose.model("LogroUnlocked", LogroUnlockedSchema);
